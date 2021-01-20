@@ -1,0 +1,1 @@
+ A simple tic tac toe project implementing a not so simple machine learning algorithm called minimax. Factory Functions and M=the module pattern will be implemented in this project in order to avoid "polluting the global scope". 
