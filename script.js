@@ -11,14 +11,14 @@ const Player = (marker, turn, name) => {
     const changeTurn = () =>{
         turn = !turn;
     }
-    return{getTurn, getName, changeTurn};
+    return{getTurn, getName, changeTurn, getMarker};
 };
 let GameBoard = (function(){
-    const player1 = ('x', true, "Player One");
-    const player2 = ('o', false, "Player Two");
+    const player1 = Player('x', true, "Player One");
+    const player2 = Player('o', false, "Player Two");
     let gameBoard;
     let init = () =>{
-        gameBoard =  [
+        gameBoard = [
             ["","",""],
             ["","",""],
             ["","",""],
@@ -57,32 +57,41 @@ let GameBoard = (function(){
                 }
             }
         }
+        //diagonals
+        return (gameBoard[0][0] == gameBoard[1][1] == gameBoard[2][2]) || (gameBoard[0][2] == gameBoard[1][1] == gameBoard[2][0]);
     }
     //runs the game
+    const getGameBoard = () => {
+        return gameBoard;
+    }
     const runGame = () => {
+        init();
         const divs = document.querySelectorAll('div');
         for(let i = 0; i < divs.length; i++){
+            const div = divs[i];
             if(checkWin()){
+                console.log("win");
                 break;
             }
-            const div = divs[i];
             div.addEventListener('click', () => {
                 const column = div.getAttribute('data-column');
                 const row = div.getAttribute('data-row');
                 let turn = player1.getTurn(); 
                 if(gameBoard[row][column] == "" && turn){
                     div.innerHTML = player1.getMarker();
+                    gameBoard[row][column] = player1.getMarker();
                     changeTurns();
                 }else if(gameBoard[row][column] == "" && !turn){
                     div.innerHTML = player2.getMarker();
+                    gameBoard[row][column] = player2.getMarker();
                     changeTurns();
                 }
             });
         }
     }
     return{
-        init, runGame,
+        init, runGame, getGameBoard,
     };
 })();
-GameBoard.init();
+
 GameBoard.runGame();
