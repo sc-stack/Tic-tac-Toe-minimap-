@@ -2,8 +2,12 @@ h1{
     display: block;
     margin: auto;
     text-align: center;
+    color: turqoise;
 }
-#container{
+#progress{
+    width: 100%;
+}
+.container{
     display: grid;
     margin: auto;
     width: 30vw;
@@ -15,4 +19,23 @@ h1{
     border-right: 1px solid turquoise;
     border-top: 1px solid turquoise;
     border-bottom: 1px solid turquoise;
+    text-align: center;
+    vertical-align: center;
+}
+.button{
+    border: 1px solid turquoise;
+    width: 10vw;
+    color: turquoise;
+    background: linear-gradient(#e66465, #9198e5);
+    height: 10vh;
+    position: fixed;
+    left: 17rem;
+    margin: 40vh;
+}
+#myBar{
+    width: 1%;
+    background-color: green;
+    height: 30px;
+    position: fixed;
+    top:100px;
 }
